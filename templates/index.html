@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IT Helpdesk Pro</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎫 IT Helpdesk Ticketing Tool</h1>
+
+    <!-- Search -->
+    <form method="GET" action="/">
+        <div class="search-box">
+            <input type="text" name="search" placeholder="🔍 Search Ticket...">
+        </div>
+    </form>
+
+    <!-- Ticket Form -->
+    <form method="POST" action="/add">
+
+        <input type="text" name="name" placeholder="👤 Name" required>
+        <input type="email" name="email" placeholder="📧 Email" required>
+        <input type="text" name="department" placeholder="🏢 Department" required>
+        <input type="text" name="issue" placeholder="⚠ Issue" required>
+
+        <select name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select>
+
+        <textarea name="description" placeholder="📝 Description"></textarea>
+
+        <button type="submit">🚀 Submit Ticket</button>
+
+    </form>
+
+    <!-- Table -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Issue</th>
+            <th>Priority</th>
+            <th>Status</th>
+        </tr>
+
+        {% for row in tickets %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[8] }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+</html>
