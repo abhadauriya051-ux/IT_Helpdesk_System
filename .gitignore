@@ -1,4 +1,20 @@
+# Database files
 *.db
+
+# JSON / CSV data
+*.json
+*.csv
+
+# Credentials (important)
+credentials.json
+
+# Python cache
+__pycache
+__/
+*.pyc
+
+# OS files
+.DS_Store*.db
 *.json
 *.csv
 credentials.json
