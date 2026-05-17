@@ -1,86 +1,52 @@
-# IT Helpdesk Ticket System
+# Enterprise IT Helpdesk System
 
-A Python-based IT Helpdesk Ticket System built using Tkinter and SQLite.
-
-# 🖥️ IT Helpdesk System (V16)
-
-A personal IT Helpdesk Ticketing System built using **Python (Tkinter + SQLite)**.
+Modern enterprise-grade IT Helpdesk & Ticket Management System built using Flask, Python, SQLite, HTML, CSS, and Email Automation.
 
 ---
 
-## 🚀 Features
+# Features
 
-- 🔐 Login System (Admin / User roles)
-- 👥 Admin can create users
-- 🎫 Create support tickets
-- 📋 View personal tickets
-- 🧑‍💼 Admin can view all tickets
-- 💾 SQLite database for persistent storage
-- 🖥️ GUI-based application (Tkinter)
-
----
-
-## 🛠️ Tech Stack
-
-- Python 3
-- Tkinter (GUI)
-- SQLite (Database)
-
----
-
-## 📸 System Flow
-
-1. User logs in
-2. Dashboard opens
-3. Create / View tickets
-4. Admin manages users + all tickets
+- Enterprise Dashboard UI
+- Automated Email Ticket Creation
+- Mail Listener Integration
+- Ticket Lifecycle Management
+- Open / Closed Ticket Workflow
+- Technician Assignment
+- Priority Management
+- Ticket Reply System
+- Search & Filtering
+- Pagination
+- Professional Sidebar Dashboard
+- Ticket Details View
+- Dark / Light Theme Support
+- GitHub Version Control
 
 ---
 
-## 🔑 Default Login
-
-**Admin:**
-- Username: admin  
-
-- Password: admin123  
-
-**User:**
-- Username: user1  
-- Password: user123  
-
----
-
-## 📂 Project Structure
-
-- helpdesk_v16.py → Main application
-- helpdesk.db → Database file (ignored in git)
-- .gitignore → Ignore sensitive files
-
----
-
-## ⚠️ Note
-
-This is a **personal learning project**, not production software.
-
----
-
-## 👨‍💻 Author
-
-Ashu (IT Support Engineer)## Features
-
-- Create support tickets
-- Assign priority
-- Track status
-- Close tickets
-- Delete tickets
-- GUI interface
-
-## Technologies Used
+# Tech Stack
 
 - Python
-- Tkinter
+- Flask
 - SQLite
+- HTML5
+- Tailwind CSS
+- SMTP / IMAP Email Integration
+- Git & GitHub
 
-## Author
+---
 
-Ashu Bhadauriya
+# Project Structure
+
+```bash
+IT_Helpdesk_System/
+
+app.py
+helpdesk.db
+
+templates/
+static/
+services/
+attachments/
+models/
+database/
+
