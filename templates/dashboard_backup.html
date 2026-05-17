@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IT Helpdesk Dashboard</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-slate-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto p-6">
+
+        <!-- HEADER -->
+        <div class="flex items-center justify-between mb-8">
+
+            <div>
+
+                <h1 class="text-4xl font-bold text-slate-800">
+                    Helpdesk Ticket Management Dashboard
+                </h1>
+
+                <p class="text-slate-500 mt-2">
+                    Ticket overview, analytics and management system.
+                </p>
+
+            </div>
+
+            <a href="/logout">
+
+                <button class="bg-red-500 hover:bg-red-600 text-white px-5 py-3 rounded-2xl shadow-lg">
+                    Logout
+                </button>
+
+            </a>
+
+        </div>
+
+
+        <!-- SEARCH -->
+        <form method="GET" action="" class="flex gap-3 mb-6">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search Ticket ID / Email / Subject"
+                class="flex-1 px-5 py-3 rounded-xl border border-slate-300 outline-none"
+            >
+
+            <button
+                class="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-xl"
+            >
+                Search
+            </button>
+
+        </form>
+
+
+        <!-- TOP BUTTONS -->
+        <div class="flex gap-4 mb-8">
+
+            <a href="/dashboard/open">
+
+                <button class="bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-3 rounded-xl shadow">
+                    Open Tickets
+                </button>
+
+            </a>
+
+            <a href="/dashboard/closed">
+
+                <button class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-3 rounded-xl shadow">
+                    Closed Tickets
+                </button>
+
+            </a>
+
+        </div>
+
+
+        <!-- KPI CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+
+            <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-slate-500 text-sm mb-2">Total Tickets</h2>
+                <p class="text-4xl font-bold text-slate-800">
+                    {{ tickets|length }}
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-slate-500 text-sm mb-2">Open Tickets</h2>
+                <p class="text-4xl font-bold text-yellow-500">
+                    {{ tickets|length }}
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-slate-500 text-sm mb-2">Closed Tickets</h2>
+                <p class="text-4xl font-bold text-green-500">
+                    0
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md p-6">
+                <h2 class="text-slate-500 text-sm mb-2">Pending Tickets</h2>
+                <p class="text-4xl font-bold text-red-500">
+                    0
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- TICKET TABLE -->
+        <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+
+            <div class="bg-violet-600 text-white px-6 py-4 text-xl font-semibold">
+                Ticket List
+            </div>
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full">
+
+                    <thead class="bg-slate-200">
+
+                        <tr>
+
+                            <th class="text-left p-4">Ticket ID</th>
+                            <th class="text-left p-4">Requester</th>
+                            <th class="text-left p-4">Subject</th>
+                            <th class="text-left p-4">Priority</th>
+                            <th class="text-left p-4">Status</th>
+                            <th class="text-left p-4">Engineer</th>
+                            <th class="text-left p-4">Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for ticket in tickets %}
+
+                        <tr class="border-b hover:bg-slate-50">
+
+                            <td class="p-4">
+                                #{{ ticket[0] }}
+                            </td>
+
+                            <td class="p-4">
+                                {{ ticket[1] }}
+                            </td>
+
+                            <td class="p-4">
+
+                                <a
+                                    href="/ticket/{{ ticket[0] }}"
+                                    class="text-blue-600 hover:underline"
+                                >
+                                    {{ ticket[2] }}
+                                </a>
+
+                            </td>
+
+                            <td class="p-4">
+
+                                <form method="POST" action="/priority/{{ ticket[0] }}">
+
+                                    <select
+                                        name="priority"
+                                        class="border rounded-lg px-3 py-2"
+                                    >
+
+                                        <option>Low</option>
+                                        <option selected>Medium</option>
+                                        <option>High</option>
+
+                                    </select>
+
+                                </form>
+
+                            </td>
+
+                            <td class="p-4">
+
+                                {% if ticket[5] == "Closed" %}
+
+                                    <span class="bg-green-500 text-white px-4 py-2 rounded-full text-sm">
+                                        Closed
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="bg-yellow-500 text-white px-4 py-2 rounded-full text-sm">
+                                        Open
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td class="p-4">
+
+                                <form method="POST" action="/assign/{{ ticket[0] }}">
+
+                                    <select
+                                        name="engineer"
+                                        class="border rounded-lg px-3 py-2"
+                                    >
+
+                                        <option>Unassigned</option>
+                                        <option>Ashu</option>
+                                        <option>Rahul</option>
+                                        <option>Admin</option>
+
+                                    </select>
+
+                                </form>
+
+                            </td>
+
+                            <td class="p-4 flex gap-2">
+
+                                <a href="/ticket/{{ ticket[0] }}">
+
+                                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg">
+                                        View
+                                    </button>
+
+                                </a>
+
+                                {% if ticket[5] == "Closed" %}
+
+                                    <a href="/reopen/{{ ticket[0] }}">
+
+                                        <button class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg">
+                                            Reopen
+                                        </button>
+
+                                    </a>
+
+                                {% else %}
+
+                                    <a href="/close/{{ ticket[0] }}">
+
+                                        <button class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg">
+                                            Close
+                                        </button>
+
+                                    </a>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+

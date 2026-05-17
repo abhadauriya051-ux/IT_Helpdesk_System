@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Ticket Details</title>
+
+    <style>
+
+        body{
+            background:#05002e;
+            color:white;
+            font-family:Arial;
+            padding:30px;
+        }
+
+        .card{
+            background:#12004d;
+            padding:25px;
+            border-radius:12px;
+            width:80%;
+            margin:auto;
+        }
+
+        h1{
+            color:#00e5ff;
+        }
+
+        textarea{
+            width:100%;
+            border-radius:10px;
+            padding:15px;
+            font-size:15px;
+            margin-top:10px;
+        }
+
+        button{
+            padding:12px 20px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:15px;
+            margin-top:15px;
+        }
+
+        .reply-btn{
+            background:#00c853;
+            color:white;
+        }
+
+        .close-btn{
+            background:#ff1744;
+            color:white;
+        }
+
+        .back-btn{
+            background:#2979ff;
+            color:white;
+        }
+
+        p{
+            line-height:1.7;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>Ticket #{{ ticket[0] }}</h1>
+
+        <p>
+            <b>Subject:</b>
+            {{ ticket[1] }}
+        </p>
+
+        <p>
+            <b>Message:</b>
+        </p>
+
+        <p>
+            {{ ticket[2] }}
+        </p>
+
+        <p>
+            <b>Sender:</b>
+            {{ ticket[3] }}
+        </p>
+
+        <p>
+            <b>Status:</b>
+            {{ ticket[4] }}
+        </p>
+
+        <hr>
+
+        <h2>Reply Ticket</h2>
+
+        <form action="/reply/{{ ticket[0] }}" method="POST">
+
+            <textarea
+                name="reply"
+                rows="8"
+                placeholder="Type your reply here..."
+                required></textarea>
+
+            <br>
+
+            <button
+                type="submit"
+                class="reply-btn">
+
+                Send Reply
+
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/close/{{ ticket[0] }}">
+
+            <button class="close-btn">
+
+                Close Ticket
+
+            </button>
+
+        </a>
+
+        <br><br>
+
+        <a href="/dashboard/admin">
+
+            <button class="back-btn">
+
+                Back Dashboard
+
+            </button>
+
+        </a>
+
+    </div>
+
+</body>
+
+</html>
+
